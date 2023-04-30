@@ -1,1 +1,1 @@
-Bagian 5- Membuat Template Blade Dulu, Pelajaran 19- Praktik Yield.mp4
+Bagian 6- Membuat Fitur Wajib Authentikasi, Pelajaran 26- Fortify, Laravel UI, Breeze atau Jetstream Pilih yang mana -.mp4
