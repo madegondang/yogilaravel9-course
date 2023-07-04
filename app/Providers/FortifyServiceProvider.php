@@ -2,16 +2,18 @@
 
 namespace App\Providers;
 
+use Illuminate\Http\Request;
+use Laravel\Fortify\Fortify;
+use Illuminate\Support\Facades\Auth;
 use App\Actions\Fortify\CreateNewUser;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Cache\RateLimiting\Limit;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
-use App\Actions\Fortify\UpdateUserProfileInformation;
-use Illuminate\Cache\RateLimiting\Limit;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\ServiceProvider;
-use Laravel\Fortify\Fortify;
-
+use Laravel\Fortify\Contracts\LoginResponse;
+use App\Actions\Fortify\UpdateUserProfileInformation;
+use App\Models\User;
 class FortifyServiceProvider extends ServiceProvider
 {
     /**
@@ -20,6 +22,31 @@ class FortifyServiceProvider extends ServiceProvider
     public function register(): void
     {
         //
+        $this->app->instance(
+            LoginResponse::class,
+            new class implements LoginResponse
+            {
+                public function toResponse($request)
+                {
+                    if (Auth::user()->role =='superadmin') {
+                        return $request->wantsJson()
+                            ? response()->json(['two_factor' => false])
+                            : redirect()->intended(config('fortify.home'));
+                    }
+
+                    if (Auth::user()->role =='admin') {
+                        return $request->wantsJson()
+                            ? response()->json(['two_factor' => false])
+                            : redirect()->intended(config('fortify.user'));
+                    }
+                    if (Auth::user()->role =='user') {
+                        return $request->wantsJson()
+                            ? response()->json(['two_factor' => false])
+                            : redirect()->intended(config('fortify.home-mobile'));
+                    }
+                }
+            }
+        );
     }
 
     /**

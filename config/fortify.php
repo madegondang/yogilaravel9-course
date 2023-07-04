@@ -63,6 +63,7 @@ return [
 
     'home' => RouteServiceProvider::HOME,
     'user' => RouteServiceProvider::USER,
+    'admin' => RouteServiceProvider::ADMIN,
 
     /*
     |--------------------------------------------------------------------------
