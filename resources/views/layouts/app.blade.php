@@ -11,7 +11,8 @@
   <link rel="stylesheet" href="{{asset('assets/css/fontawesome-free/css/all.min.css')}}">
 
   <!-- CSS Libraries -->
-
+  
+  @stack('customCss')
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
   <link rel="stylesheet" href="{{asset('assets/css/components.css')}}">
@@ -51,7 +52,7 @@
   <script src="{{asset('assets/js/stisla.js')}}"></script>
 
   <!-- JS Libraies -->
-
+  @stack('customJs')
   <!-- Template JS File -->
   <script src="{{asset('assets/js/scripts.js')}}"></script>
   <script src="{{asset('assets/js/custom.js')}}"></script>
