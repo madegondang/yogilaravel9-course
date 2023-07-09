@@ -62,7 +62,7 @@ return [
     */
 
     'home' => RouteServiceProvider::HOME,
-    'user' => RouteServiceProvider::USER,
+    'superadmin' => RouteServiceProvider::SUPERADMIN,
     'admin' => RouteServiceProvider::ADMIN,
 
     /*

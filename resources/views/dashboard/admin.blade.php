@@ -1,9 +1,9 @@
 @extends('layouts.app')
-@section('title','Baru')
+@section('title','Admin')
 @section('content')
 <section class="section">
     <div class="section-header">
-      <h1>Baru</h1>
+      <h1>Admin</h1>
     </div>
 
     <div class="section-body">
@@ -13,4 +13,5 @@
 @endsection
 
 @section('sidebar')
+@parent
 @endsection

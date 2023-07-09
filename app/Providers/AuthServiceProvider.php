@@ -9,7 +9,10 @@ use Illuminate\Support\Facades\Gate;
 class AuthServiceProvider extends ServiceProvider
 {
     public static $permission = [
-        'dashboard' => ['admin','user'],
+        'home' => ['user'],
+        'admin' => ['admin'],
+        'superadmin' => ['superadmin'],
+        
     ];
     /**
      * The policy mappings for the application.
@@ -38,8 +41,8 @@ class AuthServiceProvider extends ServiceProvider
             });
         Gate::define('dashboard', function( User $user){
             return true;
-            if ($user->role == 'superadmin'|| $user->role == 'admin') {
-            }
+            // if ($user->role == 'superadmin'|| $user->role == 'admin') {
+            // }
         });
 
         foreach(self::$permission as $action=>$roles){

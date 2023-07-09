@@ -31,18 +31,18 @@ class FortifyServiceProvider extends ServiceProvider
                     if (Auth::user()->role =='superadmin') {
                         return $request->wantsJson()
                             ? response()->json(['two_factor' => false])
-                            : redirect()->intended(config('fortify.home'));
+                            : redirect()->intended(config('fortify.superadmin'));
                     }
 
                     if (Auth::user()->role =='admin') {
                         return $request->wantsJson()
                             ? response()->json(['two_factor' => false])
-                            : redirect()->intended(config('fortify.user'));
+                            : redirect()->intended(config('fortify.admin'));
                     }
                     if (Auth::user()->role =='user') {
                         return $request->wantsJson()
                             ? response()->json(['two_factor' => false])
-                            : redirect()->intended(config('fortify.home-mobile'));
+                            : redirect()->intended(config('fortify.home'));
                     }
                 }
             }
